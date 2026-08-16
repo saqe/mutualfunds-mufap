@@ -20,6 +20,8 @@ jobs:
 
       - run: pip install "git+https://github.com/VeNoMouS/cloudscraper.git"
       - run: python mufap-scraper.py
+        timeout-minutes: 2
+      
 
       # - name: Commit
       #   run: |
