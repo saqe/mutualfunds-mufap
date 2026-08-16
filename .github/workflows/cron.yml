@@ -20,7 +20,7 @@ jobs:
 
       - run: pip install "curl_cffi[cli]" --upgrade
 
-      - run: curl-cffi get https://www.mufap.com.pk/Industry/IndustryStatDaily?tab=1
+      - run: curl-cffi get https://www.mufap.com.pk/Industry/IndustryStatDaily?tab=1  --impersonate chrome120
 
       # - name: Commit
       #   run: |
