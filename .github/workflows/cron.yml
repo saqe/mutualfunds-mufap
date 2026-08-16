@@ -20,7 +20,7 @@ jobs:
 
       - run: pip install "curl_cffi[cli]" --upgrade
 
-      - run: curl_cffi get https://www.mufap.com.pk/Industry/IndustryStatDaily?tab=1 > latest.html
+      - run: curl-cffi get https://www.mufap.com.pk/Industry/IndustryStatDaily?tab=1 > latest.html
 
       - name: Commit
         run: |
