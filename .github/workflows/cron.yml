@@ -18,9 +18,9 @@ jobs:
         with:
           python-version: "3.12"
 
-      - run: pip install "curl_cffi[cli]" --upgrade
+      - run: pip install cloudscraper
 
-      - run: curl-cffi get https://www.mufap.com.pk/Industry/IndustryStatDaily?tab=1  --impersonate chrome120
+      - run: python mufap-scraper.py
 
       # - name: Commit
       #   run: |
