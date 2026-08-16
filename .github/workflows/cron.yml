@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - run: pip install curl_cffi
+      - run: pip install "curl_cffi[cli]" --upgrade
 
       - run: curl_cffi get https://www.mufap.com.pk/Industry/IndustryStatDaily?tab=1 > latest.html
 
