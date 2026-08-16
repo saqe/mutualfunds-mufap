@@ -18,8 +18,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - run: pip install cloudscraper
-
+      - run: pip install "git+https://github.com/VeNoMouS/cloudscraper.git"
       - run: python mufap-scraper.py
 
       # - name: Commit
