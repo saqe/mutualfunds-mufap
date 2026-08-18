@@ -19,7 +19,7 @@ jobs:
           python-version: "3.12"
 
       - run: pip install ai-cloudscraper
-      - run: python cloudflare-scraper.py "https://dps.psx.com.pk/screener" > psx.html > latest.html
+      - run: python cloudflare-scraper.py "https://dps.psx.com.pk/screener" > psx.html
         timeout-minutes: 2
       
 
