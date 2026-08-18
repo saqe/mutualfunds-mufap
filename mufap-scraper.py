@@ -19,4 +19,7 @@ scraper = cloudscraper.create_scraper(
     browser='chrome',
 )
 
-print(scraper.get("https://www.mufap.com.pk/Industry/IndustryStatDaily?tab=1").text)
+response = scraper.get("https://www.mufap.com.pk/Industry/IndustryStatDaily?tab=1")
+response.raise_for_status()
+
+print(response.text)
