@@ -19,9 +19,12 @@ jobs:
           python-version: "3.12"
 
       - run: pip install ai-cloudscraper
-      - run: python cloudflare-scraper.py "https://dps.psx.com.pk/screener" > psx.html
+      - run: python cloudflare-scraper.py "https://dps.psx.com.pk/screener" > files/psx.html
         timeout-minutes: 2
-      
+      - run: python cloudflare-scraper.py "https://dps.psx.com.pk/etf/MZNPETF" > files/etfs/MZNPETF.html
+        timeout-minutes: 2
+      - run: python cloudflare-scraper.py "https://dps.psx.com.pk/etf/JSMFETF" > files/etfs/JSMFETF.html
+        timeout-minutes: 2
 
       - name: Commit
         run: |
