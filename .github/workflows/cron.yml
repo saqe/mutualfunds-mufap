@@ -19,7 +19,7 @@ jobs:
           python-version: "3.12"
 
       - run: pip install ai-cloudscraper
-      - run: python mufap-scraper.py > latest.html
+      - run: python mufap-scraper.py "https://www.mufap.com.pk/Industry/IndustryStatDaily?tab=1" > latest.html
         timeout-minutes: 2
       
 
