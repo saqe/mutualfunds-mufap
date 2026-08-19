@@ -19,9 +19,8 @@ jobs:
           python-version: "3.12"
 
       - run: pip install ai-cloudscraper
-      - run: python cloudflare-scraper.py "https://www.mufap.com.pk/Industry/IndustryStatDaily?tab=1" > latest.html
+      - run: python cloudflare-scraper.py "https://www.mufap.com.pk/Industry/IndustryStatDaily?tab=1" > files/mufap.html
         timeout-minutes: 2
-      
 
       - name: Commit
         run: |
