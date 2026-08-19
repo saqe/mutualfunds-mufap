@@ -2,7 +2,7 @@ name: psx-daily-multiple
 
 on:
   schedule:
-    - cron: "30 4,6,8,10 * * 1-5"    # Every 6 hours, 12AM, 6AM, 12PM, 6PM
+    - cron: "30 4,6,8,10 * * 1-5" # 9:30 AM, 11:30 AM, 1:30 PM, 3:30 PM PKT
   workflow_dispatch:       # manual trigger for testing
 
 permissions:
