@@ -31,7 +31,6 @@ scraper = cloudscraper.create_scraper(
 )
 
 url = sys.argv[1]
-print(url)
 
 if is_http_url(url):
     response = scraper.get(url)
