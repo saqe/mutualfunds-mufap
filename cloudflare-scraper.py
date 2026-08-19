@@ -1,3 +1,4 @@
+from bs4 import BeautifulSoup
 import cloudscraper
 import sys
 
@@ -35,4 +36,4 @@ url = sys.argv[1]
 if is_http_url(url):
     response = scraper.get(url)
     response.raise_for_status()
-    print(response.text)
+    print(BeautifulSoup(response.content, 'html.parser').prettify())
