@@ -2,6 +2,9 @@ from bs4 import BeautifulSoup
 import cloudscraper
 import sys
 
+from requests.adapters import HTTPAdapter
+from requests.sessions import Session
+
 from urllib.parse import urlparse
 
 def is_http_url(value):
@@ -12,7 +15,7 @@ def is_http_url(value):
     except ValueError:
         return False
         
-scraper = cloudscraper.create_scraper(
+scraper: Session = cloudscraper.create_scraper(
     # Challenge handling
     interpreter='js2py',        # Best compatibility for v3 challenges
     delay=5,                    # Extra time for complex challenges
@@ -30,6 +33,13 @@ scraper = cloudscraper.create_scraper(
     # Browser emulation
     browser='chrome',
 )
+# Add retry for the session if failed.
+scraper.mount('https://', HTTPAdapter(max_retries=Retry(
+    total=3, # Total number of retries to allow
+    connect=3,                # How many connection errors to retry on
+    read=3,
+    backoff_factor=0.1,
+)))
 
 url = sys.argv[1]
 
