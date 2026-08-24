@@ -6,6 +6,8 @@ from requests.adapters import HTTPAdapter
 from requests.sessions import Session
 
 from urllib.parse import urlparse
+from urllib3.util import Retry
+
 
 def is_http_url(value):
     try:
