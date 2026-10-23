@@ -19,12 +19,45 @@ jobs:
           python-version: "3.12"
 
       - run: pip install ai-cloudscraper beautifulsoup4
-      - run: python cloudflare-scraper.py "https://dps.psx.com.pk/screener" > files/psx.html
-        timeout-minutes: 2
-      - run: python cloudflare-scraper.py "https://dps.psx.com.pk/etf/MZNPETF" > files/etfs/MZNPETF.html
-        timeout-minutes: 2
-      - run: python cloudflare-scraper.py "https://dps.psx.com.pk/etf/JSMFETF" > files/etfs/JSMFETF.html
-        timeout-minutes: 2
+      - name: Fetch PSX screener data (retry on failure)
+        run: |
+          for attempt in 1 2 3; do
+            if python cloudflare-scraper.py "https://dps.psx.com.pk/screener" > files/psx.html; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then
+              echo "Fetch failed (attempt $attempt/3); retrying in 10 seconds..."
+              sleep 10
+            fi
+          done
+          exit 1
+        timeout-minutes: 8
+      - name: Fetch MZNPETF data (retry on failure)
+        run: |
+          for attempt in 1 2 3; do
+            if python cloudflare-scraper.py "https://dps.psx.com.pk/etf/MZNPETF" > files/etfs/MZNPETF.html; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then
+              echo "Fetch failed (attempt $attempt/3); retrying in 10 seconds..."
+              sleep 10
+            fi
+          done
+          exit 1
+        timeout-minutes: 8
+      - name: Fetch JSMFETF data (retry on failure)
+        run: |
+          for attempt in 1 2 3; do
+            if python cloudflare-scraper.py "https://dps.psx.com.pk/etf/JSMFETF" > files/etfs/JSMFETF.html; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then
+              echo "Fetch failed (attempt $attempt/3); retrying in 10 seconds..."
+              sleep 10
+            fi
+          done
+          exit 1
+        timeout-minutes: 8
 
       - name: Commit
         run: |
