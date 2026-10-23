@@ -4,6 +4,7 @@ import sys
 
 from requests.adapters import HTTPAdapter
 from requests.sessions import Session
+from urllib3.util.retry import Retry
 
 from urllib.parse import urlparse
 from urllib3.util import Retry
@@ -41,6 +42,8 @@ scraper.mount('https://', HTTPAdapter(max_retries=Retry(
     connect=3,                # How many connection errors to retry on
     read=3,
     backoff_factor=0.1,
+    status_forcelist=(429, 500, 502, 503, 504),
+    allowed_methods=frozenset(['GET']),
 )))
 
 url = sys.argv[1]
