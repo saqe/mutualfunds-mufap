@@ -25,16 +25,16 @@
    JSMFETF - Stock quote for JS Momentum Factor Exchange Traded Fund - Pakistan Stock Exchange (PSX)
   </title>
   <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet"/>
-  <link href="/static/styles.css?v=1.76" rel="stylesheet"/>
+  <link href="/static/styles.css?v=1.79" rel="stylesheet"/>
   <script>
-   window.__ps = {"lc":"en","tz":"Asia/Karachi","_k":"cGcOLysOfsZXDORLFaS_1pVms4jbxQHng0AGacAsMBk","rv":"1"};
+   window.__ps = {"lc":"en","tz":"Asia/Karachi","_k":"zwgOZPak3el-x-W7w2rYwA5UFB4SiyHa-qd0EwETlPA","rv":"1"};
   </script>
-  <script src="/static/script.js?v=1.76">
+  <script src="/static/script.js?v=1.79">
   </script>
   <script src="https://www.google.com/recaptcha/api.js">
   </script>
   <script>
-   var psxGisPath = '/sukuk';
+   window.psxPortal = {"name":"dps","prefix":""};
   </script>
  </head>
  <body>
@@ -49,18 +49,29 @@
        <div>
         <div class="topbar__status" style="border:none;">
          <div class="topbar__status__label">
-          Oct 27, 2026 2:59 PM
+          Oct 27, 2026 8:59 PM
          </div>
         </div>
        </div>
        <div>
-        <a class="topbar__status" href="/sukuk" onclick="tobl('/sukuk')" target="_blank">
+        <a class="topbar__status topbar__status--blink" href="/shariah" onclick="tobl('/shariah')" target="_blank">
          <div class="topbar__status__date">
           <i class="icon-menu">
           </i>
          </div>
          <div class="topbar__status__label">
-          PSX SUKUK PORTAL
+          SHARIAH PORTAL
+         </div>
+        </a>
+       </div>
+       <div>
+        <a class="topbar__status topbar__status--blink" href="/sukuk" onclick="tobl('/sukuk')" target="_blank">
+         <div class="topbar__status__date">
+          <i class="icon-menu">
+          </i>
+         </div>
+         <div class="topbar__status__label">
+          SUKUK PORTAL
          </div>
         </a>
        </div>
@@ -71,7 +82,7 @@
           </i>
          </div>
          <div class="topbar__status__label">
-          PSX KNOWLEDGE CENTER
+          KNOWLEDGE CENTER
          </div>
         </a>
        </div>
@@ -82,7 +93,7 @@
           </i>
          </div>
          <div class="topbar__status__label">
-          PSX CORPORATE WEBSITE
+          CORPORATE WEBSITE
          </div>
         </a>
        </div>
@@ -135,6 +146,9 @@
          </a>
          <a class="top__nav__subMenuItem" href="/trading-panel" target="_blank">
           Trading Panel
+         </a>
+         <a class="top__nav__subMenuItem" href="/shariah">
+          Shariah
          </a>
          <a class="top__nav__subMenuItem" href="/indices">
           Market Indices
@@ -261,13 +275,22 @@
      </div>
      <div class="header__mobile__rightMenu">
       <div>
-       <a class="topbar__status" href="/sukuk" onclick="tobl('/sukuk')" style="margin-bottom:0.5em;" target="_blank">
+       <a class="topbar__status topbar__status--blink" href="/shariah" onclick="tobl('/shariah')" style="margin-bottom:0.5em;" target="_blank">
         <div class="topbar__status__date">
          <i class="icon-menu">
          </i>
         </div>
         <div class="topbar__status__label" style="width: 100%;">
-         PSX SUKUK PORTAL
+         SHARIAH PORTAL
+        </div>
+       </a>
+       <a class="topbar__status topbar__status--blink" href="/sukuk" onclick="tobl('/sukuk')" style="margin-bottom:0.5em;" target="_blank">
+        <div class="topbar__status__date">
+         <i class="icon-menu">
+         </i>
+        </div>
+        <div class="topbar__status__label" style="width: 100%;">
+         SUKUK PORTAL
         </div>
        </a>
        <a class="topbar__status" href="https://www.psx.com.pk/" onclick="tobl('https://www.psx.com.pk')" target="_blank">
@@ -276,7 +299,7 @@
          </i>
         </div>
         <div class="topbar__status__label">
-         PSX CORPORATE WEBSITE
+         CORPORATE WEBSITE
         </div>
        </a>
       </div>
@@ -318,6 +341,11 @@
        <li>
         <a href="/trading-panel">
          Trading Panel
+        </a>
+       </li>
+       <li>
+        <a href="/shariah">
+         Shariah
         </a>
        </li>
        <li>
@@ -515,17 +543,17 @@
            KSE100
           </div>
           <div class="topIndices__item__val">
-           164,585.42
+           164,467.20
           </div>
          </div>
          <div class="change__text--pos">
           <div class="topIndices__item__change">
            <i class="icon-up-dir">
            </i>
-           1546.96
+           1428.74
           </div>
           <div class="topIndices__item__changep">
-           (0.95%)
+           (0.88%)
           </div>
          </div>
         </div>
@@ -537,17 +565,17 @@
            KSE100PR
           </div>
           <div class="topIndices__item__val">
-           49,157.09
+           49,121.78
           </div>
          </div>
          <div class="change__text--pos">
           <div class="topIndices__item__change">
            <i class="icon-up-dir">
            </i>
-           462.04
+           426.73
           </div>
           <div class="topIndices__item__changep">
-           (0.95%)
+           (0.88%)
           </div>
          </div>
         </div>
@@ -559,17 +587,17 @@
            ALLSHR
           </div>
           <div class="topIndices__item__val">
-           99,749.64
+           99,729.91
           </div>
          </div>
          <div class="change__text--pos">
           <div class="topIndices__item__change">
            <i class="icon-up-dir">
            </i>
-           861.96
+           842.23
           </div>
           <div class="topIndices__item__changep">
-           (0.87%)
+           (0.85%)
           </div>
          </div>
         </div>
@@ -581,17 +609,17 @@
            KSE30
           </div>
           <div class="topIndices__item__val">
-           48,511.30
+           48,442.40
           </div>
          </div>
          <div class="change__text--pos">
           <div class="topIndices__item__change">
            <i class="icon-up-dir">
            </i>
-           420.29
+           351.39
           </div>
           <div class="topIndices__item__changep">
-           (0.87%)
+           (0.73%)
           </div>
          </div>
         </div>
@@ -603,17 +631,17 @@
            KMI30
           </div>
           <div class="topIndices__item__val">
-           236,049.90
+           235,633.52
           </div>
          </div>
          <div class="change__text--pos">
           <div class="topIndices__item__change">
            <i class="icon-up-dir">
            </i>
-           2073.06
+           1656.68
           </div>
           <div class="topIndices__item__changep">
-           (0.89%)
+           (0.71%)
           </div>
          </div>
         </div>
@@ -625,17 +653,17 @@
            BKTI
           </div>
           <div class="topIndices__item__val">
-           45,342.56
+           45,328.82
           </div>
          </div>
          <div class="change__text--pos">
           <div class="topIndices__item__change">
            <i class="icon-up-dir">
            </i>
-           509.93
+           496.19
           </div>
           <div class="topIndices__item__changep">
-           (1.14%)
+           (1.11%)
           </div>
          </div>
         </div>
@@ -647,17 +675,17 @@
            OGTI
           </div>
           <div class="topIndices__item__val">
-           33,656.85
+           33,560.53
           </div>
          </div>
          <div class="change__text--pos">
           <div class="topIndices__item__change">
            <i class="icon-up-dir">
            </i>
-           278.51
+           182.19
           </div>
           <div class="topIndices__item__changep">
-           (0.83%)
+           (0.55%)
           </div>
          </div>
         </div>
@@ -669,17 +697,17 @@
            KMIALLSHR
           </div>
           <div class="topIndices__item__val">
-           64,568.26
+           64,521.14
           </div>
          </div>
          <div class="change__text--pos">
           <div class="topIndices__item__change">
            <i class="icon-up-dir">
            </i>
-           475.35
+           428.23
           </div>
           <div class="topIndices__item__changep">
-           (0.74%)
+           (0.67%)
           </div>
          </div>
         </div>
@@ -691,17 +719,17 @@
            PSXDIV20
           </div>
           <div class="topIndices__item__val">
-           74,835.43
+           74,881.37
           </div>
          </div>
          <div class="change__text--pos">
           <div class="topIndices__item__change">
            <i class="icon-up-dir">
            </i>
-           591.47
+           637.41
           </div>
           <div class="topIndices__item__changep">
-           (0.80%)
+           (0.86%)
           </div>
          </div>
         </div>
@@ -713,17 +741,17 @@
            UPP9
           </div>
           <div class="topIndices__item__val">
-           58,600.99
+           58,519.81
           </div>
          </div>
          <div class="change__text--pos">
           <div class="topIndices__item__change">
            <i class="icon-up-dir">
            </i>
-           408.78
+           327.60
           </div>
           <div class="topIndices__item__changep">
-           (0.70%)
+           (0.56%)
           </div>
          </div>
         </div>
@@ -735,17 +763,17 @@
            NITPGI
           </div>
           <div class="topIndices__item__val">
-           44,003.22
+           43,927.79
           </div>
          </div>
          <div class="change__text--pos">
           <div class="topIndices__item__change">
            <i class="icon-up-dir">
            </i>
-           390.76
+           315.33
           </div>
           <div class="topIndices__item__changep">
-           (0.90%)
+           (0.72%)
           </div>
          </div>
         </div>
@@ -757,17 +785,17 @@
            NBPPGI
           </div>
           <div class="topIndices__item__val">
-           47,016.04
+           46,965.30
           </div>
          </div>
          <div class="change__text--pos">
           <div class="topIndices__item__change">
            <i class="icon-up-dir">
            </i>
-           417.31
+           366.57
           </div>
           <div class="topIndices__item__changep">
-           (0.90%)
+           (0.79%)
           </div>
          </div>
         </div>
@@ -779,17 +807,17 @@
            MZNPI
           </div>
           <div class="topIndices__item__val">
-           29,632.82
+           29,572.12
           </div>
          </div>
          <div class="change__text--pos">
           <div class="topIndices__item__change">
            <i class="icon-up-dir">
            </i>
-           228.69
+           167.99
           </div>
           <div class="topIndices__item__changep">
-           (0.78%)
+           (0.57%)
           </div>
          </div>
         </div>
@@ -801,17 +829,17 @@
            JSMFI
           </div>
           <div class="topIndices__item__val">
-           41,547.51
+           41,487.62
           </div>
          </div>
          <div class="change__text--pos">
           <div class="topIndices__item__change">
            <i class="icon-up-dir">
            </i>
-           202.42
+           142.53
           </div>
           <div class="topIndices__item__changep">
-           (0.49%)
+           (0.34%)
           </div>
          </div>
         </div>
@@ -823,17 +851,17 @@
            ACI
           </div>
           <div class="topIndices__item__val">
-           20,966.40
+           20,957.11
           </div>
          </div>
          <div class="change__text--pos">
           <div class="topIndices__item__change">
            <i class="icon-up-dir">
            </i>
-           210.84
+           201.55
           </div>
           <div class="topIndices__item__changep">
-           (1.02%)
+           (0.97%)
           </div>
          </div>
         </div>
@@ -845,17 +873,17 @@
            JSGBKTI
           </div>
           <div class="topIndices__item__val">
-           68,610.78
+           68,602.91
           </div>
          </div>
          <div class="change__text--pos">
           <div class="topIndices__item__change">
            <i class="icon-up-dir">
            </i>
-           856.04
+           848.17
           </div>
           <div class="topIndices__item__changep">
-           (1.26%)
+           (1.25%)
           </div>
          </div>
         </div>
@@ -892,17 +920,17 @@
            MII30
           </div>
           <div class="topIndices__item__val">
-           21,327.30
+           21,300.70
           </div>
          </div>
          <div class="change__text--pos">
           <div class="topIndices__item__change">
            <i class="icon-up-dir">
            </i>
-           162.39
+           135.79
           </div>
           <div class="topIndices__item__changep">
-           (0.77%)
+           (0.64%)
           </div>
          </div>
         </div>
@@ -1013,7 +1041,7 @@
       </div>
       <div class="quote__price">
        <div class="quote__close">
-        Rs.10.30
+        Rs.10.32
        </div>
        <div class="quote__change change__text--pos">
         <div class="change__direction">
@@ -1021,10 +1049,10 @@
          </i>
         </div>
         <div class="change__value">
-         0.09
+         0.11
         </div>
         <div class="change__percent">
-         (0.88%)
+         (1.08%)
         </div>
        </div>
       </div>
@@ -1055,7 +1083,7 @@
           </div>
          </div>
          <div class="quote__date">
-          ^ As of Tue, Oct 27, 2026 2:54 PM
+          ^ As of Tue, Oct 27, 2026 3:35 PM
          </div>
         </div>
         <div class="chart__body">
@@ -1095,7 +1123,7 @@
             High
            </div>
            <div class="stats_value">
-            10.30
+            10.32
            </div>
           </div>
           <div class="stats_item">
@@ -1111,7 +1139,7 @@
             Volume
            </div>
            <div class="stats_value">
-            327,000
+            431,500
            </div>
           </div>
          </div>
@@ -1121,10 +1149,10 @@
             iNAV
            </div>
            <div class="stats_value">
-            10.27
+            10.25
            </div>
            <div class="stats_note" style="font-size: 0.9em; color:#666; margin-top:0.5em">
-            Last Updated:  2026-10-27 14:54:34
+            Last Updated:  2026-10-27 15:30:19
            </div>
           </div>
           <div class="stats_item">
@@ -1144,7 +1172,7 @@
            </div>
            <div class="stats_value">
             9.20 — 11.25
-            <div class="numRange" data-current="10.3" data-high="11.25" data-low="9.2">
+            <div class="numRange" data-current="10.32" data-high="11.25" data-low="9.2">
             </div>
            </div>
           </div>
@@ -1153,8 +1181,8 @@
             DAY RANGE
            </div>
            <div class="stats_value">
-            10.22 — 10.30
-            <div class="numRange" data-current="10.3" data-high="10.3" data-low="10.22">
+            10.22 — 10.32
+            <div class="numRange" data-current="10.32" data-high="10.32" data-low="10.22">
             </div>
            </div>
           </div>
@@ -1164,7 +1192,7 @@
            </div>
            <div class="stats_value">
             9.19 — 14.14
-            <div class="numRange" data-current="10.3" data-high="14.14" data-low="9.19">
+            <div class="numRange" data-current="10.32" data-high="14.14" data-low="9.19">
             </div>
            </div>
           </div>
@@ -1175,7 +1203,7 @@
             Ask Price
            </div>
            <div class="stats_value">
-            10.29
+            0.00
            </div>
           </div>
           <div class="stats_item">
@@ -1183,7 +1211,7 @@
             Ask Volume
            </div>
            <div class="stats_value">
-            500,000
+            0
            </div>
           </div>
           <div class="stats_item">
@@ -1191,7 +1219,7 @@
             Bid Price
            </div>
            <div class="stats_value">
-            10.25
+            0.00
            </div>
           </div>
           <div class="stats_item">
@@ -1199,7 +1227,7 @@
             Bid Volume
            </div>
            <div class="stats_value">
-            500,000
+            0
            </div>
           </div>
          </div>
@@ -1352,7 +1380,7 @@
             Ask Price
            </div>
            <div class="stats_value">
-            11.20
+            0.00
            </div>
           </div>
           <div class="stats_item">
@@ -1360,7 +1388,7 @@
             Ask Volume
            </div>
            <div class="stats_value">
-            489
+            0
            </div>
           </div>
           <div class="stats_item">
@@ -1368,7 +1396,7 @@
             Bid Price
            </div>
            <div class="stats_value">
-            11.00
+            0.00
            </div>
           </div>
           <div class="stats_item">
@@ -1376,7 +1404,7 @@
             Bid Volume
            </div>
            <div class="stats_value">
-            400
+            0
            </div>
           </div>
          </div>
@@ -1422,7 +1450,7 @@
          </span>
         </div>
         <div class="stats_value">
-         Rs. 931,283,600.00
+         Rs. 929,470,000.00
         </div>
        </div>
        <div class="stats_item">
@@ -1449,7 +1477,7 @@
          )
         </div>
         <div class="stats_value">
-         Rs. 934,004.00
+         Rs. 935,817.60
         </div>
        </div>
       </div>
