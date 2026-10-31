@@ -1,5 +1,4 @@
 import argparse
-import csv
 import html
 import sys
 from pathlib import Path
@@ -8,7 +7,6 @@ from bs4 import BeautifulSoup
 
 
 INPUT = Path("files/psx.html")
-OUTPUT = Path("files/psx.csv")
 HTML_OUTPUT = Path("files/psx-table.html")
 HTML_COLUMNS = (
     "symbol",
@@ -34,7 +32,6 @@ def clean_cell(cell):
 
 def main():
     parser = argparse.ArgumentParser(description="Parse the PSX screener table")
-    parser.add_argument("--csv-output", type=Path, default=OUTPUT)
     parser.add_argument("--html-output", type=Path, default=HTML_OUTPUT)
     parser.add_argument("--limit", type=int, help="Limit output to the first N rows")
     args = parser.parse_args()
@@ -79,12 +76,6 @@ def main():
         for row in rows
     ]
 
-    args.csv_output.parent.mkdir(parents=True, exist_ok=True)
-    with args.csv_output.open("w", encoding="utf-8", newline="") as output_file:
-        writer = csv.writer(output_file)
-        writer.writerow(headers)
-        writer.writerows(rows)
-
     html_table = ["<table>", "  <tr>"]
     html_table.extend(
         f"    <th>{html.escape(header_labels[column])}</th>"
@@ -99,7 +90,7 @@ def main():
     args.html_output.parent.mkdir(parents=True, exist_ok=True)
     args.html_output.write_text("\n".join(html_table), encoding="utf-8")
 
-    print(f"Wrote {len(rows)} cleaned PSX rows to {args.csv_output} and {args.html_output}")
+    print(f"Wrote {len(rows)} cleaned PSX rows to {args.html_output}")
 
 
 if __name__ == "__main__":
