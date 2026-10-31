@@ -1,3 +1,4 @@
+import argparse
 import csv
 import html
 import sys
@@ -32,6 +33,12 @@ def clean_cell(cell):
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Parse the PSX screener table")
+    parser.add_argument("--csv-output", type=Path, default=OUTPUT)
+    parser.add_argument("--html-output", type=Path, default=HTML_OUTPUT)
+    parser.add_argument("--limit", type=int, help="Limit output to the first N rows")
+    args = parser.parse_args()
+
     if not INPUT.is_file():
         raise FileNotFoundError(f"Input HTML not found: {INPUT}")
 
@@ -57,6 +64,11 @@ def main():
             values.extend([""] * (len(headers) - len(values)))
         rows.append(values[: len(headers)])
 
+    if args.limit is not None:
+        if args.limit < 0:
+            raise ValueError("--limit must be zero or greater")
+        rows = rows[: args.limit]
+
     column_indexes = [headers.index(column) for column in HTML_COLUMNS]
     header_labels = {
         th.get("data-name"): " ".join(th.stripped_strings)
@@ -67,8 +79,8 @@ def main():
         for row in rows
     ]
 
-    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    with OUTPUT.open("w", encoding="utf-8", newline="") as output_file:
+    args.csv_output.parent.mkdir(parents=True, exist_ok=True)
+    with args.csv_output.open("w", encoding="utf-8", newline="") as output_file:
         writer = csv.writer(output_file)
         writer.writerow(headers)
         writer.writerows(rows)
@@ -84,9 +96,10 @@ def main():
         html_table.extend(f"    <td>{html.escape(value)}</td>" for value in row)
         html_table.append("  </tr>")
     html_table.extend(["</table>", ""])
-    HTML_OUTPUT.write_text("\n".join(html_table), encoding="utf-8")
+    args.html_output.parent.mkdir(parents=True, exist_ok=True)
+    args.html_output.write_text("\n".join(html_table), encoding="utf-8")
 
-    print(f"Wrote {len(rows)} cleaned PSX rows to {OUTPUT} and {HTML_OUTPUT}")
+    print(f"Wrote {len(rows)} cleaned PSX rows to {args.csv_output} and {args.html_output}")
 
 
 if __name__ == "__main__":
