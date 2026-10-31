@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
 
       - uses: actions/setup-python@v5
         with:
@@ -25,6 +27,12 @@ jobs:
         timeout-minutes: 2
       - run: python cloudflare-scraper.py "https://dps.psx.com.pk/etf/JSMFETF" > files/etfs/JSMFETF.html
         timeout-minutes: 2
+      - name: Parse and clean PSX table
+        run: python parse-psx.py
+      - name: Parse PSX ticker values
+        run: |
+          python parse-psx-ticker.py files/etfs/MZNPETF.html files/etfs/MZNPETF-table.html
+          python parse-psx-ticker.py files/etfs/JSMFETF.html files/etfs/JSMFETF-table.html
 
       - name: Commit
         run: |
@@ -32,4 +40,4 @@ jobs:
           git config user.email "18554574+saqe@users.noreply.github.com"
           git add files/
           git diff --staged --quiet || git commit -m "psx: $( date -u +%F_%r)"
-          git push
+          git push origin HEAD:main
