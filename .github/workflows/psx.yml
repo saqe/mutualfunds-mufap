@@ -21,11 +21,11 @@ jobs:
           python-version: "3.12"
 
       - run: pip install ai-cloudscraper beautifulsoup4
-      - run: python cloudflare-scraper.py "https://dps.psx.com.pk/screener" > files/psx.html
+      - run: python cloudflare-scraper.py "https://dps.psx.com.pk/screener" --expect "table#screenerTable" > files/psx.html
         timeout-minutes: 5
-      - run: python cloudflare-scraper.py "https://dps.psx.com.pk/etf/MZNPETF" > files/etfs/MZNPETF.html
+      - run: python cloudflare-scraper.py "https://dps.psx.com.pk/etf/MZNPETF" --expect ".quote__price" > files/etfs/MZNPETF.html
         timeout-minutes: 5
-      - run: python cloudflare-scraper.py "https://dps.psx.com.pk/etf/JSMFETF" > files/etfs/JSMFETF.html
+      - run: python cloudflare-scraper.py "https://dps.psx.com.pk/etf/JSMFETF" --expect ".quote__price" > files/etfs/JSMFETF.html
         timeout-minutes: 5
       - name: Parse and clean PSX table
         run: python parse-psx.py
@@ -40,4 +40,5 @@ jobs:
           git config user.email "18554574+saqe@users.noreply.github.com"
           git add files/
           git diff --staged --quiet || git commit -m "psx: $( date -u +%F_%r)"
+          git pull --rebase origin main
           git push origin HEAD:main
