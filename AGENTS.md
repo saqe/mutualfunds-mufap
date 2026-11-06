@@ -1,6 +1,7 @@
 # AGENTS.md
 
 This file provides guidance to AI coding agents (Claude Code, Codex, Cursor, etc.) when working with code in this repository.
+
 ## What this repo is
 
 A scheduled scraper, not an application. GitHub Actions fetch pages from MUFAP (mutual fund NAVs) and PSX (stock screener, ETF quotes), turn them into cleaned HTML tables, and commit the results back to `main` under `files/`. There is no test suite, linter, or build step, and no requirements file. Dependencies (`ai-cloudscraper`, `beautifulsoup4`) are installed inline in the workflows.
