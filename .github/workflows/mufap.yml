@@ -20,7 +20,7 @@ jobs:
 
       - run: pip install ai-cloudscraper beautifulsoup4
       - run: python cloudflare-scraper.py "https://www.mufap.com.pk/Industry/IndustryStatDaily?tab=1" > files/mufap.html
-        timeout-minutes: 2
+        timeout-minutes: 5
 
       - name: Commit
         run: |

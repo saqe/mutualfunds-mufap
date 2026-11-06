@@ -22,11 +22,11 @@ jobs:
 
       - run: pip install ai-cloudscraper beautifulsoup4
       - run: python cloudflare-scraper.py "https://dps.psx.com.pk/screener" > files/psx.html
-        timeout-minutes: 2
+        timeout-minutes: 5
       - run: python cloudflare-scraper.py "https://dps.psx.com.pk/etf/MZNPETF" > files/etfs/MZNPETF.html
-        timeout-minutes: 2
+        timeout-minutes: 5
       - run: python cloudflare-scraper.py "https://dps.psx.com.pk/etf/JSMFETF" > files/etfs/JSMFETF.html
-        timeout-minutes: 2
+        timeout-minutes: 5
       - name: Parse and clean PSX table
         run: python parse-psx.py
       - name: Parse PSX ticker values

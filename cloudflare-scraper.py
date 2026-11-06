@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 import cloudscraper
+import requests
 import sys
+import time
 
 from requests.adapters import HTTPAdapter
 from requests.sessions import Session
@@ -46,9 +48,34 @@ scraper.mount('https://', HTTPAdapter(max_retries=Retry(
     allowed_methods=frozenset(['GET']),
 )))
 
+MAX_ATTEMPTS = 5
+BASE_DELAY = 5  # seconds; doubles each attempt (5, 10, 20, 40)
+RETRY_STATUSES = {403, 404, 408, 429, 500, 502, 503, 504}
+
+
+def fetch(url):
+    """GET url, retrying transient failures (dropped connections, Cloudflare
+    403s, flaky 404/5xx) with exponential backoff. Returns the response."""
+    last_error = None
+    for attempt in range(1, MAX_ATTEMPTS + 1):
+        try:
+            response = scraper.get(url, timeout=60)
+            if response.status_code not in RETRY_STATUSES:
+                response.raise_for_status()
+                return response
+            last_error = f"HTTP {response.status_code}"
+        except requests.exceptions.RequestException as e:
+            last_error = repr(e)
+        if attempt < MAX_ATTEMPTS:
+            delay = BASE_DELAY * 2 ** (attempt - 1)
+            print(f"attempt {attempt}/{MAX_ATTEMPTS} failed for {url}: {last_error}; "
+                  f"retrying in {delay}s", file=sys.stderr)
+            time.sleep(delay)
+    sys.exit(f"giving up on {url} after {MAX_ATTEMPTS} attempts: {last_error}")
+
+
 url = sys.argv[1]
 
 if is_http_url(url):
-    response = scraper.get(url)
-    response.raise_for_status()
+    response = fetch(url)
     print(BeautifulSoup(response.content, 'html.parser').prettify())
