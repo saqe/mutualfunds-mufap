@@ -14,7 +14,7 @@ Run from the repo root, since the parsers use relative paths.
 pip install ai-cloudscraper beautifulsoup4
 
 # Fetch a page: pretty-printed HTML goes to stdout, retry logs to stderr
-python cloudflare-scraper.py "https://dps.psx.com.pk/screener" > files/psx.html
+python cloudflare-scraper.py "https://dps.psx.com.pk/screener" --expect "table#screenerTable" > files/psx.html
 
 # Clean the screener table: reads files/psx.html, writes files/psx-table.html
 python parse-psx.py [--limit N] [--html-output PATH]
@@ -28,7 +28,8 @@ python parse-psx-ticker.py files/etfs/MZNPETF.html files/etfs/MZNPETF-table.html
 Pipeline: `cloudflare-scraper.py` (fetch) → raw `files/*.html` → parser → `files/*-table.html`. The workflows in `.github/workflows/` chain these steps.
 
 - **`cloudflare-scraper.py`** uses `cloudscraper` to get past Cloudflare and prints prettified HTML to stdout.
-  - It retries up to 5 times with exponential backoff on connection errors and on HTTP 403, 404, 408, 429 and 5xx. The sites fail transiently (dropped connections, spurious 403/404), so keep 403 and 404 in the retry list.
+  - It retries up to 5 times with exponential backoff on connection errors and on HTTP 403, 404, 408, 429 and 5xx, using a fresh session per attempt. There is no urllib3 adapter retry underneath, so the retries don't multiply.
+  - `--expect CSS_SELECTOR` makes a 200 response without a matching element (e.g. a Cloudflare challenge page) count as a failed attempt. Every workflow step passes it, so a junk page is never committed. Update the selector if a site changes its markup. The sites fail transiently (dropped connections, spurious 403/404), so keep 403 and 404 in the retry list.
   - Workflows redirect stdout into `files/`. A failed fetch exits non-zero, so the job stops before the commit step.
 - **`parse-psx.py`** works on the screener table (`#screenerTable`).
   - It keeps only the columns in `HTML_COLUMNS`, matched by each `th`'s `data-name`.
@@ -41,7 +42,7 @@ Pipeline: `cloudflare-scraper.py` (fetch) → raw `files/*.html` → parser → 
 
 - **`psx.yml`** (`psx-daily-multiple`) runs four times each weekday (04:30, 06:30, 08:30 and 10:30 UTC). It fetches the screener plus the `MZNPETF` and `JSMFETF` ETF pages, runs both parsers, and pushes to `main`.
 - **`mufap.yml`** (`mufap-daily`) runs weekdays at 14:30 UTC and only fetches the raw `files/mufap.html`. There is no parser for it.
-- Both workflows commit as `scraping-bot` and push straight to `main`, and only commit when `files/` has changed. Each step has `timeout-minutes: 5`, sized to cover the scraper's retries, so raise it if you lengthen the backoff.
+- Both workflows commit as `scraping-bot`, then `git pull --rebase origin main` and push straight to `main`, so two workflows pushing at once don't clash. They only commit when `files/` has changed. Each step has `timeout-minutes: 5`, sized to cover the scraper's retries, so raise it if you lengthen the backoff.
 - **`retry.yml`** (`retry-failed-scrape`) watches both workflows via `workflow_run`. On failure it waits 60s and re-runs the failed jobs, up to 3 attempts in total. A re-run gets a fresh runner, so it may get a different IP. It only fires from the default branch.
 - To add an ETF, add a fetch step and a parse step to `psx.yml` and create the output under `files/etfs/`.
 - Committed files under `files/` are workflow output. Don't hand-edit them.

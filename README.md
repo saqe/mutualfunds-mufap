@@ -35,7 +35,7 @@ Requires Python 3.12.
 pip install ai-cloudscraper beautifulsoup4
 
 # Fetch a page (HTML on stdout, retry logs on stderr)
-python cloudflare-scraper.py "https://dps.psx.com.pk/screener" > files/psx.html
+python cloudflare-scraper.py "https://dps.psx.com.pk/screener" --expect "table#screenerTable" > files/psx.html
 
 # Clean the screener table (reads files/psx.html, writes files/psx-table.html)
 python parse-psx.py [--limit N] [--html-output PATH]
@@ -50,7 +50,7 @@ Run these from the repository root, since the parsers use relative paths.
 
 `cloudflare-scraper.py` uses `cloudscraper` to get past Cloudflare. Transient
 failures (dropped connections, 403/404/429/5xx) are retried up to 5 times with
-exponential backoff. If every attempt fails, the script exits non-zero and the
+exponential backoff. Each attempt uses a fresh session. With `--expect <css selector>`, a response that lacks the expected element (for example a Cloudflare challenge page) also counts as a failure and is retried. If every attempt fails, the script exits non-zero and the
 workflow stops before committing anything.
 
 For contributor and agent guidance, see [AGENTS.md](AGENTS.md).
